@@ -1304,7 +1304,7 @@
         </div>
     </div>
     <!-- Contact Section -->
-    <div class="py-20 md:p-16 relative overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, rgb(162, 38, 49) 0%, rgb(142, 28, 39) 100%);">
+    <div id="contact" class="py-20 md:p-16 relative overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, rgb(162, 38, 49) 0%, rgb(142, 28, 39) 100%);">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-40 h-40 border-2 border-white rounded-full animate-pulse"></div>
