@@ -2,275 +2,307 @@
 
 @section('content')
     <!-- Hero Section -->
-    {{-- Hero Section --}}
-    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" class="relative h-[85vh] min-h-[700px] overflow-hidden" style="font-family: Delivery, Verdana, sans-serif;">
 
-        <div class="hero-slider relative w-full h-screen">
+        {{-- Enhanced Tracking Form with Better Visibility --}}
+        <div class="absolute top-20 left-0 right-0 z-30 px-4 sm:px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl shadow-2xl p-5 backdrop-blur-sm bg-white/98 border-2 border-gray-100">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgb(162, 38, 49);">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-gray-900 text-base font-bold">Track Your Shipment</h2>
+                    </div>
+
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <div class="flex-1 relative">
+                            <input
+                                type="text"
+                                placeholder="Enter tracking number(s) - separate multiple with commas"
+                                class="w-full px-4 py-3 text-sm rounded-lg border-2 border-gray-200 focus:outline-none focus:border-[rgb(162,38,49)] transition-colors"
+                            />
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="px-6 py-3 text-white text-sm font-bold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+                            style="background-color: rgb(162, 38, 49);"
+                        >
+                            Track Package
+                        </button>
+                    </form>
+
+                    <div class="mt-3 flex items-center gap-3 text-xs text-gray-600">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Real-time updates
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            SMS notifications
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Delivery proof
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slider relative w-full h-full">
 
             {{-- Slide 1: Express Delivery --}}
-            <div class="slide active absolute inset-0 flex items-center" data-slide="0">
+            <div class="slide active absolute inset-0" data-slide="0">
                 <div class="absolute inset-0 bg-cover bg-center"
-                     style="background-image: url('{{ asset('assets/images/slider01.webp') }}');">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-600/80 via-primary-500/60 to-primary-700/80"></div>
+                     style="background-image: url('{{ asset('assets/images/homeSlider.webp') }}');">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
                 </div>
 
-                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative z-10 h-full flex items-center max-w-7xl mx-auto px-6 pt-40">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/15 backdrop-blur-md rounded-full text-xs text-white mb-3 border border-white/20">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold">19+ Years of Trusted Service</span>
+                        </div>
 
-                        <div class="text-white space-y-6">
-                            <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M13 10h5l3 4v6h-1a3 3 0 11-6 0H9a3 3 0 11-6 0H2v-6l3-4h5V4a2 2 0 112 0v6z"/>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                            Here Today,<br>
+                            <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">There Today</span>
+                        </h1>
+
+                        <p class="text-white/95 text-base mb-5 leading-relaxed max-w-xl">
+                            Tanzania's premier express courier service delivering speed, reliability, and security. From same-day rush to next-day nationwide coverage.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button class="group px-6 py-3 text-sm font-bold rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/50 transform hover:-translate-y-1 flex items-center gap-2" style="background-color: rgb(162, 38, 49); color: white;">
+                                Get Instant Quote
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                                 </svg>
-                                19+ Years of Excellence
-                            </div>
-
-                            <h1 class="hero-title text-5xl md:text-7xl font-bold">
-                                Here Today,
-                                <span class="block text-neutral-100">There Today</span>
-                            </h1>
-
-                            <p class="text-xl md:text-2xl text-gray-100 leading-relaxed max-w-2xl">
-                                Tanzania's premier express courier service. Same-day, next-day, and customized delivery solutions across all regions.
-                            </p>
-
-                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                                <button class="btn-primary px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-neutral-50 transition-all shadow-lg">
-                                    Get Express Quote
-                                </button>
-                                <button class="btn-secondary px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-primary-500 transition-all">
-                                    Our Services
-                                </button>
-                            </div>
+                            </button>
+                            <button class="px-6 py-3 border-2 text-white text-sm font-bold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm" style="border-color: white;">
+                                Our Services
+                            </button>
                         </div>
 
-                        <div class="flex justify-center lg:justify-end">
-                            <div class="w-80 h-80 bg-white/15 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/10">
-                                <div class="flex flex-col items-center text-center h-full justify-center space-y-6">
-                                    <div class="bg-neutral-50/20 w-20 h-20 rounded-2xl flex items-center justify-center">
-                                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">Express Delivery</h3>
-                                        <p class="text-gray-100">Same-day delivery across Tanzania</p>
-                                    </div>
-                                    <div class="bg-white/20 rounded-xl p-4 w-full">
-                                        <div class="text-3xl font-bold text-neutral-100">19+</div>
-                                        <div class="text-sm text-gray-100">Years of trusted service</div>
-                                    </div>
-                                </div>
+                        {{-- Quick Stats --}}
+                        <div class="mt-6 grid grid-cols-3 gap-4 pt-5 border-t border-white/20">
+                            <div>
+                                <div class="text-2xl font-bold text-white">99.8%</div>
+                                <div class="text-xs text-white/80">On-Time Delivery</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">24/7</div>
+                                <div class="text-xs text-white/80">Customer Support</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">50K+</div>
+                                <div class="text-xs text-white/80">Packages Monthly</div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            {{-- Slide 2: Secure Document Handling --}}
-            <div class="slide absolute inset-0 flex items-center opacity-0 pointer-events-none transition-opacity duration-700" data-slide="1">
+            {{-- Slide 2: Secure Documents --}}
+            <div class="slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-700" data-slide="1">
                 <div class="absolute inset-0 bg-cover bg-center"
                      style="background-image: url('{{ asset('assets/images/secure-documents.webp') }}');">
-                    <div class="absolute inset-0 bg-gradient-to-br from-neutral-800/70 via-neutral-700/60 to-primary-600/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
                 </div>
 
-                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative z-10 h-full flex items-center max-w-7xl mx-auto px-6 pt-40">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/15 backdrop-blur-md rounded-full text-xs text-white mb-3 border border-white/20">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold">Banking & Corporate Trust</span>
+                        </div>
 
-                        <div class="text-white space-y-6">
-                            <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                            Secure Document<br>
+                            <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Handling</span>
+                        </h1>
+
+                        <p class="text-white/95 text-base mb-5 leading-relaxed max-w-xl">
+                            Trusted by Tanzania's leading banks and corporations for critical, time-sensitive documents. Chain-of-custody tracking, sealed pouches, and signature verification.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button class="group px-6 py-3 text-sm font-bold rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/50 transform hover:-translate-y-1 flex items-center gap-2" style="background-color: rgb(162, 38, 49); color: white;">
+                                Secure Delivery
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                                 </svg>
-                                Banking & Corporate Trust
-                            </div>
-
-                            <h1 class="hero-title text-5xl md:text-7xl font-bold">
-                                Secure Document
-                                <span class="block text-primary-300">Handling</span>
-                            </h1>
-
-                            <p class="text-xl md:text-2xl text-gray-100 leading-relaxed max-w-2xl">
-                                Trusted by Tanzania's leading banks, corporations, and healthcare institutions for critical document delivery.
-                            </p>
-
-                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                                <button class="btn-primary px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-neutral-50 transition-all shadow-lg">
-                                    Secure Delivery
-                                </button>
-                                <button class="btn-secondary px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-primary-500 transition-all">
-                                    Learn More
-                                </button>
-                            </div>
+                            </button>
+                            <button class="px-6 py-3 border-2 text-white text-sm font-bold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm" style="border-color: white;">
+                                Learn More
+                            </button>
                         </div>
 
-                        <div class="flex justify-center lg:justify-end">
-                            <div class="w-80 h-80 bg-white/15 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/10">
-                                <div class="flex flex-col items-center text-center h-full justify-center space-y-4">
-                                    <div class="bg-primary-300/80 w-20 h-20 rounded-2xl flex items-center justify-center">
-                                        <svg class="w-10 h-10 text-primary-800" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">Chain of Custody</h3>
-                                        <p class="text-gray-100">Full documentation & tracking</p>
-                                    </div>
-                                    <div class="w-full space-y-2">
-                                        <div class="bg-white/20 rounded-xl p-3 flex items-center">
-                                            <div class="w-3 h-3 bg-primary-400 rounded-full mr-3 flex-shrink-0"></div>
-                                            <span class="text-sm">Banking Documents</span>
-                                        </div>
-                                        <div class="bg-white/20 rounded-xl p-3 flex items-center">
-                                            <div class="w-3 h-3 bg-primary-600 rounded-full mr-3 flex-shrink-0"></div>
-                                            <span class="text-sm">Legal Papers</span>
-                                        </div>
-                                    </div>
-                                </div>
+                        {{-- Security Features --}}
+                        <div class="mt-6 grid grid-cols-3 gap-4 pt-5 border-t border-white/20">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-xs text-white/90 font-medium">Encrypted</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-xs text-white/90 font-medium">Tracked</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="text-xs text-white/90 font-medium">Verified</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
-            {{-- Slide 3: Multimodal Transport --}}
-            <div class="slide absolute inset-0 flex items-center opacity-0 pointer-events-none transition-opacity duration-700" data-slide="2">
+            {{-- Slide 3: Coverage --}}
+            <div class="slide absolute inset-0 opacity-0 pointer-events-none transition-opacity duration-700" data-slide="2">
                 <div class="absolute inset-0 bg-cover bg-center"
                      style="background-image: url('{{ asset('assets/images/multimodal-transport.webp') }}');">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-700/75 via-neutral-800/60 to-primary-600/70"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
                 </div>
 
-                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative z-10 h-full flex items-center max-w-7xl mx-auto px-6 pt-40">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/15 backdrop-blur-md rounded-full text-xs text-white mb-3 border border-white/20">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/>
+                            </svg>
+                            <span class="font-semibold">Road, Air & Sea Solutions</span>
+                        </div>
 
-                        <div class="text-white space-y-6">
-                            <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                            Complete<br>
+                            <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Coverage</span>
+                        </h1>
+
+                        <p class="text-white/95 text-base mb-5 leading-relaxed max-w-xl">
+                            Multimodal transport solutions tailored to your needs. Whether it's express road delivery, air freight, or sea cargo, we've got you covered.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <button class="group px-6 py-3 text-sm font-bold rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/50 transform hover:-translate-y-1 flex items-center gap-2" style="background-color: rgb(162, 38, 49); color: white;">
+                                Get Quote Now
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                                 </svg>
-                                Road, Air & Sea
-                            </div>
-
-                            <h1 class="hero-title text-5xl md:text-7xl font-bold">
-                                Complete
-                                <span class="block text-neutral-200">Coverage</span>
-                            </h1>
-
-                            <p class="text-xl md:text-2xl text-gray-100 leading-relaxed max-w-2xl">
-                                Multimodal transport solutions across Tanzania. Road, air, and sea freight for comprehensive logistics coverage.
-                            </p>
-
-                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                                <button class="btn-primary px-8 py-4 bg-white text-primary-600 rounded-xl font-semibold hover:bg-neutral-50 transition-all shadow-lg">
-                                    Get Coverage Quote
-                                </button>
-                                <button class="btn-secondary px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white hover:text-primary-500 transition-all">
-                                    Transport Options
-                                </button>
-                            </div>
+                            </button>
+                            <button class="px-6 py-3 border-2 text-white text-sm font-bold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm" style="border-color: white;">
+                                View Options
+                            </button>
                         </div>
 
-                        <div class="flex justify-center lg:justify-end">
-                            <div class="w-80 h-80 bg-white/15 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/10">
-                                <div class="flex flex-col items-center text-center h-full justify-center space-y-4">
-                                    <div class="bg-neutral-200/80 w-20 h-20 rounded-2xl flex items-center justify-center">
-                                        <svg class="w-10 h-10 text-primary-700" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-2xl font-bold text-white mb-2">Nationwide</h3>
-                                        <p class="text-gray-100">From Dar es Salaam to remote regions</p>
-                                    </div>
-                                    <div class="grid grid-cols-3 gap-2 w-full">
-                                        <div class="bg-white/20 rounded-xl p-3">
-                                            <div class="text-2xl mb-1">🚛</div>
-                                            <div class="text-xs text-gray-100">Road</div>
-                                        </div>
-                                        <div class="bg-white/20 rounded-xl p-3">
-                                            <div class="text-2xl mb-1">✈️</div>
-                                            <div class="text-xs text-gray-100">Air</div>
-                                        </div>
-                                        <div class="bg-white/20 rounded-xl p-3">
-                                            <div class="text-2xl mb-1">🚢</div>
-                                            <div class="text-xs text-gray-100">Sea</div>
-                                        </div>
-                                    </div>
-                                </div>
+                        {{-- Transport Modes --}}
+                        <div class="mt-6 grid grid-cols-3 gap-4 pt-5 border-t border-white/20">
+                            <div class="text-center">
+                                <svg class="w-7 h-7 text-white mx-auto mb-1.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                    <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z"/>
+                                </svg>
+                                <div class="text-xs text-white/90 font-medium">Road Freight</div>
+                            </div>
+                            <div class="text-center">
+                                <svg class="w-7 h-7 text-white mx-auto mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                                <div class="text-xs text-white/90 font-medium">Air Cargo</div>
+                            </div>
+                            <div class="text-center">
+                                <svg class="w-7 h-7 text-white mx-auto mb-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                                <div class="text-xs text-white/90 font-medium">Sea Freight</div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
         </div>
 
-        {{-- Slider Navigation Dots --}}
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-            <div class="flex gap-3">
-                <button class="slide-nav w-3 h-3 rounded-full bg-white transition-all duration-300 hover:bg-white/80"
-                        data-slide="0"
-                        aria-label="Go to slide 1"></button>
-                <button class="slide-nav w-3 h-3 rounded-full bg-white/40 transition-all duration-300 hover:bg-white/80"
-                        data-slide="1"
-                        aria-label="Go to slide 2"></button>
-                <button class="slide-nav w-3 h-3 rounded-full bg-white/40 transition-all duration-300 hover:bg-white/80"
-                        data-slide="2"
-                        aria-label="Go to slide 3"></button>
-            </div>
+        {{-- Enhanced Slider Controls --}}
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 bg-black/30 backdrop-blur-md px-3 py-2.5 rounded-full border border-white/20">
+            <button class="slide-nav w-8 h-1 rounded-full bg-white transition-all duration-300" data-slide="0" aria-label="Slide 1"></button>
+            <button class="slide-nav w-8 h-1 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300" data-slide="1" aria-label="Slide 2"></button>
+            <button class="slide-nav w-8 h-1 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300" data-slide="2" aria-label="Slide 3"></button>
         </div>
 
-        {{-- Navigation Arrows --}}
-        <button class="prev-slide absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/40 p-3 rounded-full transition-all duration-300"
-                aria-label="Previous slide">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+        {{-- Improved Nav Arrows --}}
+        <button class="prev-slide absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/25 backdrop-blur-md p-2.5 rounded-full transition-all duration-300 border border-white/20 group" aria-label="Previous">
+            <svg class="w-5 h-5 text-white group-hover:-translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
             </svg>
         </button>
 
-        <button class="next-slide absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 backdrop-blur-sm hover:bg-white/40 p-3 rounded-full transition-all duration-300"
-                aria-label="Next slide">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <button class="next-slide absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/25 backdrop-blur-md p-2.5 rounded-full transition-all duration-300 border border-white/20 group" aria-label="Next">
+            <svg class="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
             </svg>
         </button>
+
     </section>
     <!-- About Us Section -->
-    <section id="about" class="py-20" style="background: linear-gradient(135deg, #0b152c 0%, #1e293b 100%);">
+    <section id="about" class="py-16" style="background: linear-gradient(135deg, #0b152c 0%, #1e293b 100%); font-family: Delivery, Verdana, sans-serif;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Section Header -->
-            <div class="relative text-center mb-16">
-            <span class="inline-block px-4 py-2 text-xs font-semibold text-red-300 tracking-wider uppercase bg-red-900 bg-opacity-30 rounded-full mb-4 border border-red-400 border-opacity-30">
-                <i class="fas fa-star mr-2"></i>
+            <div class="relative text-center mb-12">
+            <span class="inline-block px-3 py-1.5 text-xs font-semibold text-red-300 tracking-wider uppercase bg-red-900 bg-opacity-30 rounded-full mb-3 border border-red-400 border-opacity-30">
+                <i class="fas fa-star mr-1.5"></i>
                 About Simba Courier
             </span>
-                <h2 class="text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent mb-4">
                     Here Today, There Today
-{{--                    <span class="block">For Over 19 Years</span>--}}
                 </h2>
-                <p class="max-w-3xl mx-auto text-lg text-white text-opacity-90 leading-relaxed">
+                <p class="max-w-3xl mx-auto text-base text-white text-opacity-90 leading-relaxed">
                     As a subsidiary of Simba Logistic Equipment Supply Co. Ltd, we're Tanzania's premier moving, relocation, and international courier specialists, making life's transitions seamless across the nation and beyond.
                 </p>
-                <div class="mt-8 h-1 w-24 bg-gradient-to-r from-red-500 to-white mx-auto rounded-full"></div>
+                <div class="mt-6 h-1 w-20 bg-gradient-to-r from-red-500 to-white mx-auto rounded-full"></div>
             </div>
 
             <!-- Main Content with Image -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-12">
                 <!-- Image Side -->
                 <div class="order-2 lg:order-1">
                     <div class="relative">
                         <div class="absolute inset-0 bg-red-900 bg-opacity-20 rounded-2xl transform rotate-3"></div>
                         <img src="{{ asset('assets/images/about-hero01.webp') }}"
                              alt="Simba Courier Moving Team"
-                             class="relative w-full h-80 object-cover rounded-2xl shadow-xl">
+                             class="relative w-full h-72 object-cover rounded-2xl shadow-xl">
                         <!-- Stats Overlay -->
-                        <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl">
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-xl p-3 shadow-xl">
                             <div class="text-center">
-                                <div class="text-3xl font-bold text-red-600 mb-1">19+</div>
+                                <div class="text-2xl font-bold text-red-600 mb-0.5">19+</div>
                                 <div class="text-xs text-gray-600">Years Strong</div>
                             </div>
                         </div>
@@ -278,34 +310,34 @@
                 </div>
 
                 <!-- Content Side -->
-                <div class="order-1 lg:order-2 space-y-6">
+                <div class="order-1 lg:order-2 space-y-5">
                     <!-- Our Story -->
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-4 heading">Our Story</h3>
-                        <p class="text-white text-opacity-80 leading-relaxed mb-4">
+                        <h3 class="text-xl font-bold text-white mb-3">Our Story</h3>
+                        <p class="text-white text-opacity-80 leading-relaxed mb-3 text-sm">
                             For over 19 years, Simba Courier Services has been helping families and businesses navigate life's biggest transitions. From residential relocations to corporate moves and international shipping, we've made "Here Today, There Today" more than just a slogan—it's our promise.
                         </p>
-                        <p class="text-white text-opacity-80 leading-relaxed">
+                        <p class="text-white text-opacity-80 leading-relaxed text-sm">
                             What started as a vision to simplify relocations has grown into Tanzania's most trusted moving and courier service, handling everything from precious family heirlooms to critical business relocations with equal care.
                         </p>
                     </div>
 
                     <!-- Key Stats Grid -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 text-center border border-white border-opacity-10">
-                            <div class="text-2xl font-bold text-red-400 mb-1">5000+</div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 text-center border border-white border-opacity-10">
+                            <div class="text-xl font-bold text-red-400 mb-0.5">5000+</div>
                             <div class="text-xs text-white text-opacity-70">Successful Moves</div>
                         </div>
-                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 text-center border border-white border-opacity-10">
-                            <div class="text-2xl font-bold text-red-400 mb-1">200+</div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 text-center border border-white border-opacity-10">
+                            <div class="text-xl font-bold text-red-400 mb-0.5">200+</div>
                             <div class="text-xs text-white text-opacity-70">Countries Reached</div>
                         </div>
-                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 text-center border border-white border-opacity-10">
-                            <div class="text-2xl font-bold text-red-400 mb-1">24/7</div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 text-center border border-white border-opacity-10">
+                            <div class="text-xl font-bold text-red-400 mb-0.5">24/7</div>
                             <div class="text-xs text-white text-opacity-70">Service Support</div>
                         </div>
-                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-4 text-center border border-white border-opacity-10">
-                            <div class="text-2xl font-bold text-red-400 mb-1">100%</div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-3 text-center border border-white border-opacity-10">
+                            <div class="text-xl font-bold text-red-400 mb-0.5">100%</div>
                             <div class="text-xs text-white text-opacity-70">Secure Handling</div>
                         </div>
                     </div>
@@ -313,46 +345,39 @@
             </div>
 
             <!-- Mission & Vision -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-12">
                 <!-- Mission Card -->
                 <div class="relative overflow-hidden group">
                     <div class="absolute inset-0 bg-gradient-to-br from-red-600 via-red-700 to-red-800"></div>
                     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
 
-                    <div class="relative p-10 text-white">
-                        <div class="flex items-start mb-8">
-                            <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-bullseye text-white text-2xl"></i>
+                    <div class="relative p-8 text-white">
+                        <div class="flex items-start mb-6">
+                            <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mr-5 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-bold mb-2 heading">Our Mission</h4>
-                                <div class="w-12 h-1 bg-white/40 rounded-full"></div>
+                                <h4 class="text-xl font-bold mb-1.5">Our Mission</h4>
+                                <div class="w-10 h-0.5 bg-white/40 rounded-full"></div>
                             </div>
                         </div>
 
-                        <p class="text-red-50 text-lg leading-relaxed mb-6">
+                        <p class="text-red-50 text-base leading-relaxed mb-5">
                             To provide comprehensive moving, relocation, and international courier services that make life's transitions seamless, allowing our clients to focus on their new beginnings while we handle the logistics with precision and care.
                         </p>
 
-                        <div class="flex items-center space-x-4 text-red-100">
+                        <div class="flex items-center space-x-3 text-red-100 text-sm">
                             <div class="flex items-center">
-                                <i class="fas fa-home mr-2"></i>
-                                <span class="text-sm">Relocation</span>
+                                <i class="fas fa-home mr-1.5"></i>
+                                <span>Relocation</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-globe mr-2"></i>
-                                <span class="text-sm">Global Reach</span>
+                                <i class="fas fa-globe mr-1.5"></i>
+                                <span>Global Reach</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-heart mr-2"></i>
-                                <span class="text-sm">Care</span>
-                            </div>
-                        </div>
-
-                        <!-- Decorative corner element -->
-                        <div class="absolute top-6 right-6 w-20 h-20 border-2 border-white/20 rounded-full flex items-center justify-center">
-                            <div class="w-12 h-12 border-2 border-white/30 rounded-full flex items-center justify-center">
-                                <div class="w-4 h-4 bg-white/40 rounded-full"></div>
+                                <i class="fas fa-heart mr-1.5"></i>
+                                <span>Care</span>
                             </div>
                         </div>
                     </div>
@@ -363,40 +388,33 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black"></div>
                     <div class="absolute inset-0 opacity-10 bg-pattern"></div>
 
-                    <div class="relative p-10 text-white">
-                        <div class="flex items-start mb-8">
-                            <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                                <i class="fas fa-eye text-white text-2xl"></i>
+                    <div class="relative p-8 text-white">
+                        <div class="flex items-start mb-6">
+                            <div class="w-14 h-14 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center mr-5 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                                <i class="fas fa-eye text-white text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-bold mb-2 heading">Our Vision</h4>
-                                <div class="w-12 h-1 bg-red-500 rounded-full"></div>
+                                <h4 class="text-xl font-bold mb-1.5">Our Vision</h4>
+                                <div class="w-10 h-0.5 bg-red-500 rounded-full"></div>
                             </div>
                         </div>
 
-                        <p class="text-gray-200 text-lg leading-relaxed mb-6">
+                        <p class="text-gray-200 text-base leading-relaxed mb-5">
                             To be East Africa's most trusted partner for relocations and international shipping, known for care, reliability, and global connectivity that transforms how people and businesses make life's important moves.
                         </p>
 
-                        <div class="flex items-center space-x-4 text-gray-300">
+                        <div class="flex items-center space-x-3 text-gray-300 text-sm">
                             <div class="flex items-center">
-                                <i class="fas fa-star mr-2 text-red-400"></i>
-                                <span class="text-sm">Trust</span>
+                                <i class="fas fa-star mr-1.5 text-red-400"></i>
+                                <span>Trust</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-handshake mr-2 text-red-400"></i>
-                                <span class="text-sm">Partnership</span>
+                                <i class="fas fa-handshake mr-1.5 text-red-400"></i>
+                                <span>Partnership</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-expand-arrows-alt mr-2 text-red-400"></i>
-                                <span class="text-sm">Growth</span>
-                            </div>
-                        </div>
-
-                        <!-- Decorative corner element -->
-                        <div class="absolute top-6 right-6 w-20 h-20 border-2 border-red-500/30 rounded-full flex items-center justify-center">
-                            <div class="w-12 h-12 border-2 border-red-400/40 rounded-full flex items-center justify-center">
-                                <div class="w-4 h-4 bg-red-400/60 rounded-full"></div>
+                                <i class="fas fa-expand-arrows-alt mr-1.5 text-red-400"></i>
+                                <span>Growth</span>
                             </div>
                         </div>
                     </div>
@@ -404,183 +422,122 @@
             </div>
 
             <!-- Why Choose Us -->
-            <div class="bg-white bg-opacity-5 backdrop-blur-sm rounded-3xl p-10 mb-12 relative overflow-hidden border border-white border-opacity-10">
-                <!-- Background Pattern -->
-                <div class="absolute inset-0 opacity-5">
-                    <div class="absolute top-10 left-10 w-32 h-32 border border-white rounded-full"></div>
-                    <div class="absolute bottom-10 right-10 w-48 h-48 border border-white rounded-full"></div>
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-white rounded-full"></div>
-                </div>
-
+            <div class="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 mb-10 relative overflow-hidden border border-white border-opacity-10">
                 <div class="relative z-10">
-                    <div class="text-center mb-12">
-                        <h3 class="text-4xl font-bold text-white mb-4 heading">Why Choose Simba Courier?</h3>
-                        <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-white mx-auto mb-6 rounded-full"></div>
-                        <p class="text-lg text-white text-opacity-80 max-w-3xl mx-auto leading-relaxed">
+                    <div class="text-center mb-10">
+                        <h3 class="text-3xl font-bold text-white mb-3">Why Choose Simba Courier?</h3>
+                        <div class="w-20 h-0.5 bg-gradient-to-r from-red-500 to-white mx-auto mb-4 rounded-full"></div>
+                        <p class="text-base text-white text-opacity-80 max-w-3xl mx-auto leading-relaxed">
                             When life's biggest transitions matter most, families and businesses across Tanzania trust Simba Courier Services.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Moving Expertise -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
-                                        <i class="fas fa-home text-red-400 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-star text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
+                                        <i class="fas fa-home text-red-400 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-red-400 transition-colors duration-300">19+ Years of Excellence</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300">19+ Years of Excellence</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
                                     Nearly two decades of trusted experience delivering peace of mind through thousands of successful moves across Tanzania and internationally.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-300 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- Professional Packing -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
-                                        <i class="fas fa-box text-gray-300 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-shield-alt text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
+                                        <i class="fas fa-box text-gray-300 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-gray-300 transition-colors duration-300">Your Belongings Matter</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
-                                    Professional care using premium materials and proven techniques to protect everything from delicate antiques to sensitive electronics with the attention they deserve.
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-gray-300 transition-colors duration-300">Your Belongings Matter</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
+                                    Professional care using premium materials and proven techniques to protect everything from delicate antiques to sensitive electronics.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- Global Network -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
-                                        <i class="fas fa-globe text-red-400 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-plane text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
+                                        <i class="fas fa-globe text-red-400 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-red-400 transition-colors duration-300">Truly Global Reach</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
-                                    Connect with over 200 countries worldwide through our comprehensive network, backed by customs expertise and reliable door-to-door delivery solutions.
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300">Truly Global Reach</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
+                                    Connect with over 200 countries worldwide through our comprehensive network, backed by customs expertise and reliable delivery solutions.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-300 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- Secure Warehousing -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
-                                        <i class="fas fa-warehouse text-gray-300 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-lock text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
+                                        <i class="fas fa-warehouse text-gray-300 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-gray-300 transition-colors duration-300">Protected Every Step</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
-                                    State-of-the-art facilities with climate control and 24/7 security monitoring ensure your items remain safe and secure for both short and long-term needs.
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-gray-300 transition-colors duration-300">Protected Every Step</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
+                                    State-of-the-art facilities with climate control and 24/7 security monitoring ensure your items remain safe and secure.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- End-to-End Service -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
-                                        <i class="fas fa-route text-red-400 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-check text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-red-900 to-red-800 bg-opacity-30 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-red-400 border-opacity-30">
+                                        <i class="fas fa-route text-red-400 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-red-400 transition-colors duration-300">Stress-Free Experience</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
-                                    From first contact to final placement, our dedicated project managers handle every detail of your journey so you can focus on what matters most.
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300">Stress-Free Experience</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
+                                    From first contact to final placement, our dedicated project managers handle every detail so you can focus on what matters most.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-red-300 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
 
                         <!-- 24/7 Support -->
-                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-2 transition-all duration-500">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-2xl"></div>
+                        <div class="group relative bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white border-opacity-10 hover:bg-opacity-15 hover:-translate-y-1 transition-all duration-500">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-xl"></div>
 
                             <div class="text-center">
-                                <div class="relative inline-block mb-6">
-                                    <div class="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
-                                        <i class="fas fa-headset text-gray-300 text-2xl"></i>
-                                    </div>
-                                    <div class="absolute -top-2 -right-2 w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-clock text-white text-xs"></i>
+                                <div class="relative inline-block mb-4">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-600 bg-opacity-40 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg border border-gray-400 border-opacity-30">
+                                        <i class="fas fa-headset text-gray-300 text-xl"></i>
                                     </div>
                                 </div>
 
-                                <h4 class="text-xl font-bold text-white mb-4 heading group-hover:text-gray-300 transition-colors duration-300">Always Here for You</h4>
-                                <p class="text-white text-opacity-70 leading-relaxed text-sm mb-6">
-                                    Round-the-clock support and emergency assistance mean you're never alone—we're always monitoring and ready to help whenever you need us.
+                                <h4 class="text-lg font-bold text-white mb-3 group-hover:text-gray-300 transition-colors duration-300">Always Here for You</h4>
+                                <p class="text-white text-opacity-70 leading-relaxed text-sm">
+                                    Round-the-clock support and emergency assistance mean you're never alone—we're always ready to help whenever you need us.
                                 </p>
-
-                                <div class="flex justify-center space-x-2">
-                                    <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
-                                    <div class="w-2 h-2 bg-gray-600 rounded-full"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -589,60 +546,51 @@
         </div>
     </section>
     <!-- Services Section -->
-    <div  id="services" class="max-w-7xl mx-auto bg-white rounded-3xl p-10 mb-12 relative overflow-hidden shadow-xl">
+    <div id="services" class="max-w-7xl mx-auto bg-white rounded-2xl p-8 mb-10 relative overflow-hidden shadow-xl" style="font-family: Delivery, Verdana, sans-serif;">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-32 h-32 border-2 border-red-400 rounded-full"></div>
             <div class="absolute bottom-10 right-10 w-48 h-48 border-2 border-red-400 rounded-full"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-2 border-red-400 rounded-full"></div>
-            <div class="absolute top-20 right-1/4 w-24 h-24 border-2 border-gray-400 rounded-full"></div>
-            <div class="absolute bottom-20 left-1/4 w-40 h-40 border-2 border-gray-400 rounded-full"></div>
-            <div class="absolute top-1/3 right-20 w-16 h-16 bg-red-300 rounded-lg transform rotate-45"></div>
-            <div class="absolute bottom-1/3 left-20 w-20 h-20 bg-gray-300 rounded-lg transform rotate-12"></div>
-            <div class="absolute top-3/4 right-1/3 w-12 h-12 border-2 border-red-400 transform rotate-45"></div>
-            <div class="absolute top-1/4 left-1/3 w-14 h-14 border-2 border-gray-400 transform -rotate-12"></div>
         </div>
 
         <div class="relative z-10">
-            <div class="text-center mb-12">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4 heading">Our Services</h3>
-                <div class="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mb-6 rounded-full"></div>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold text-gray-900 mb-3">Our Services</h3>
+                <div class="w-20 h-0.5 bg-gradient-to-r from-red-500 to-red-700 mx-auto mb-4 rounded-full"></div>
+                <p class="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Comprehensive logistics solutions tailored to meet your every need, from local courier to international freight.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Warehouse Management -->
-                <div class="group relative bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-t-2xl"></div>
+                <div class="group relative bg-gray-50 rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl"></div>
 
-                    <div class="flex items-start space-x-6">
+                    <div class="flex items-start space-x-5">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-red-200">
-                                <i class="fas fa-warehouse text-red-600 text-2xl"></i>
-                            </div>
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-md">
-                                <i class="fas fa-star text-white text-xs"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-red-50 to-red-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-red-200">
+                                <i class="fas fa-warehouse text-red-600 text-xl"></i>
                             </div>
                         </div>
 
                         <div class="flex-1">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3 heading group-hover:text-red-600 transition-colors duration-300">Warehouse Management</h4>
-                            <p class="text-gray-600 leading-relaxed text-sm mb-4">
-                                Professional inventory management with climate-controlled facilities, real-time tracking systems, and flexible storage solutions for businesses of all sizes.
+                            <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-300">Warehouse Management</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-3">
+                                Professional inventory management with climate-controlled facilities, real-time tracking systems, and flexible storage solutions.
                             </p>
-                            <ul class="space-y-2 text-gray-700 text-sm">
+                            <ul class="space-y-1.5 text-gray-700 text-sm">
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     24/7 Security & Monitoring
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     Climate Control Systems
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     Inventory Management Software
                                 </li>
                             </ul>
@@ -651,35 +599,32 @@
                 </div>
 
                 <!-- Local & International Courier -->
-                <div class="group relative bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-2xl"></div>
+                <div class="group relative bg-gray-50 rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-xl"></div>
 
-                    <div class="flex items-start space-x-6">
+                    <div class="flex items-start space-x-5">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-300">
-                                <i class="fas fa-shipping-fast text-gray-600 text-2xl"></i>
-                            </div>
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center shadow-md">
-                                <i class="fas fa-globe text-white text-xs"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-300">
+                                <i class="fas fa-shipping-fast text-gray-600 text-xl"></i>
                             </div>
                         </div>
 
                         <div class="flex-1">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3 heading group-hover:text-gray-700 transition-colors duration-300">Local & International Courier</h4>
-                            <p class="text-gray-600 leading-relaxed text-sm mb-4">
-                                Fast, reliable delivery services across Tanzania and to over 200 countries worldwide. From documents to packages, we ensure safe and timely delivery.
+                            <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors duration-300">Local & International Courier</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-3">
+                                Fast, reliable delivery services across Tanzania and to over 200 countries worldwide. Safe and timely delivery guaranteed.
                             </p>
-                            <ul class="space-y-2 text-gray-700 text-sm">
+                            <ul class="space-y-1.5 text-gray-700 text-sm">
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     Same-Day Local Delivery
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     Express International Shipping
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     Real-Time Tracking
                                 </li>
                             </ul>
@@ -688,35 +633,32 @@
                 </div>
 
                 <!-- Packaging -->
-                <div class="group relative bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-700 rounded-t-2xl"></div>
+                <div class="group relative bg-gray-50 rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-700 rounded-t-xl"></div>
 
-                    <div class="flex items-start space-x-6">
+                    <div class="flex items-start space-x-5">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-red-200">
-                                <i class="fas fa-box-open text-red-600 text-2xl"></i>
-                            </div>
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-md">
-                                <i class="fas fa-shield-alt text-white text-xs"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-red-50 to-red-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-red-200">
+                                <i class="fas fa-box-open text-red-600 text-xl"></i>
                             </div>
                         </div>
 
                         <div class="flex-1">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3 heading group-hover:text-red-600 transition-colors duration-300">Packaging</h4>
-                            <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                            <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors duration-300">Packaging</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-3">
                                 Expert packing services using premium materials and industry-best techniques to protect your valuables during transit and storage.
                             </p>
-                            <ul class="space-y-2 text-gray-700 text-sm">
+                            <ul class="space-y-1.5 text-gray-700 text-sm">
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     Custom Crating Solutions
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     Fragile Item Specialists
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-red-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-red-500 mr-2 text-xs"></i>
                                     Premium Packing Materials
                                 </li>
                             </ul>
@@ -725,35 +667,32 @@
                 </div>
 
                 <!-- Movers & Relocation -->
-                <div class="group relative bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-2xl"></div>
+                <div class="group relative bg-gray-50 rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-t-xl"></div>
 
-                    <div class="flex items-start space-x-6">
+                    <div class="flex items-start space-x-5">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-300">
-                                <i class="fas fa-truck-moving text-gray-600 text-2xl"></i>
-                            </div>
-                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-gray-500 rounded-full flex items-center justify-center shadow-md">
-                                <i class="fas fa-home text-white text-xs"></i>
+                            <div class="w-14 h-14 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-300">
+                                <i class="fas fa-truck-moving text-gray-600 text-xl"></i>
                             </div>
                         </div>
 
                         <div class="flex-1">
-                            <h4 class="text-xl font-bold text-gray-900 mb-3 heading group-hover:text-gray-700 transition-colors duration-300">Movers & Relocation</h4>
-                            <p class="text-gray-600 leading-relaxed text-sm mb-4">
-                                Comprehensive moving services for residential and corporate relocations. From planning to execution, we handle every detail of your move.
+                            <h4 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors duration-300">Movers & Relocation</h4>
+                            <p class="text-gray-600 leading-relaxed text-sm mb-3">
+                                Comprehensive moving services for residential and corporate relocations. We handle every detail of your move from planning to execution.
                             </p>
-                            <ul class="space-y-2 text-gray-700 text-sm">
+                            <ul class="space-y-1.5 text-gray-700 text-sm">
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     Residential Moving
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     Corporate Relocation
                                 </li>
                                 <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gray-500 mr-2"></i>
+                                    <i class="fas fa-check-circle text-gray-500 mr-2 text-xs"></i>
                                     International Moving
                                 </li>
                             </ul>
@@ -763,10 +702,10 @@
             </div>
 
             <!-- CTA Button -->
-            <div class="text-center mt-12">
-                <a href="#contact" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold rounded-full hover:from-red-600 hover:to-red-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            <div class="text-center mt-10">
+                <a href="#contact" class="inline-flex items-center px-7 py-3.5 bg-gradient-to-r from-red-500 to-red-700 text-white font-semibold text-sm rounded-full hover:from-red-600 hover:to-red-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                     <span>Get a Free Quote</span>
-                    <i class="fas fa-arrow-right ml-3"></i>
+                    <i class="fas fa-arrow-right ml-2.5"></i>
                 </a>
             </div>
         </div>
