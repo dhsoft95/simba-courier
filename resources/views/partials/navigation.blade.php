@@ -1,16 +1,13 @@
 <!-- Navigation -->
 <nav class="bg-white shadow-sm fixed w-full top-0 z-50" style="font-family: Delivery, Verdana, sans-serif;">
     <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-14">
+        <div class="flex justify-between items-center h-24">
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="/" class="flex items-center">
-                    <div class="flex items-center space-x-2">
-                        <img src="{{ asset('assets/logo.png') }}" alt="Simba Courier" class="h-12 w-auto">
-                        <div class="flex flex-col">
-                            <span class="text-base font-bold leading-tight" style="color: rgb(17, 24, 39);">Simba Courier</span>
-                            <span class="text-xs text-gray-600 font-medium -mt-0.5">Fast & Reliable</span>
-                        </div>
+                    <div class="flex items-center space-x-3">
+                        <img src="{{ asset('assets/logo.png') }}" alt="Simba Courier" class="h-24 w-auto">
+
                     </div>
                 </a>
             </div>
@@ -67,7 +64,7 @@
                 </button>
 
                 <!-- Mobile menu -->
-                <div x-show="open" x-transition class="origin-top-right absolute right-4 top-14 mt-2 w-72 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" @click.away="open = false">
+                <div x-show="open" x-transition class="origin-top-right absolute right-4 top-16 mt-2 w-72 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50" @click.away="open = false">
                     <div class="px-4 py-5 space-y-3">
                         <!-- Navigation Links -->
                         <div class="space-y-1.5">
