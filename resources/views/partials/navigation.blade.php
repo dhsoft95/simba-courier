@@ -1,5 +1,40 @@
+
 <!-- Navigation -->
 <nav class="bg-white shadow-sm fixed w-full top-0 z-50" style="font-family: Delivery, Verdana, sans-serif;">
+    <!-- Contact Information Bar -->
+    <div class="bg-slate-800 border-b border-slate-700 py-2" style="font-family: Delivery, Verdana, sans-serif;">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-2 lg:space-y-0">
+                <!-- Contact Info -->
+                <div class="flex flex-wrap justify-center lg:justify-start items-center gap-4 lg:gap-6 text-xs">
+                    <div class="flex items-center space-x-1.5 text-white">
+                        <i class="fas fa-phone-alt text-red-500 text-xs"></i>
+                        <span>+255 123 456 789</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5 text-white">
+                        <i class="fas fa-envelope text-red-500 text-xs"></i>
+                        <span>info@simbacourier.co.tz</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5 text-white">
+                        <i class="fas fa-map-marker-alt text-red-500 text-xs"></i>
+                        <span>Dar es Salaam, Tanzania</span>
+                    </div>
+                </div>
+
+                <!-- Office Hours -->
+                <div class="flex items-center space-x-2 text-xs">
+                    <div class="flex items-center space-x-1.5 text-green-400">
+                        <span class="flex h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                        <span class="font-medium">Office Open</span>
+                    </div>
+                    <div class="text-gray-300">
+                        Mon - Fri: 8:00 AM - 6:00 PM | Sat: 9:00 AM - 2:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-24">
             <!-- Logo -->
@@ -86,16 +121,6 @@
                         </div>
 
                         <hr class="border-gray-200">
-
-                        <!-- Mobile Search -->
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                </svg>
-                            </div>
-                            <input type="text" placeholder="Track Package" class="block w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:border-transparent" style="focus:ring-color: rgb(162, 38, 49);">
-                        </div>
 
                         <!-- Mobile Track Button -->
                         <a href="#tracking" class="block w-full px-4 py-2.5 text-center text-sm font-semibold rounded-lg text-white transition duration-150 hover:opacity-90" style="background-color: rgb(162, 38, 49);" @click="open = false">

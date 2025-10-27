@@ -605,7 +605,7 @@
                  Why Choose <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">Simba Courier</span>?
              </h2>
              <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                 Trusted by thousands across Tanzania for reliable, professional moving solutions.
+                 Tanzania's most trusted courier service with nationwide coverage and international reach for all your delivery needs.
              </p>
          </div>
 
@@ -624,10 +624,10 @@
                          </div>
                          <div class="text-right">
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 19+ Years of Excellence
+                                 15+ Years in Tanzania
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 Nearly two decades of trusted experience delivering peace of mind through thousands of successful moves.
+                                 Over 15 years of dedicated courier experience across Tanzania, understanding local logistics challenges and solutions.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <span>Learn more</span>
@@ -643,15 +643,15 @@
                      <div class="relative flex items-start gap-4 flex-row-reverse p-4 rounded-xl hover:bg-white/5 transition-all duration-300">
                          <div class="flex-shrink-0">
                              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-red-500/20">
-                                 <i class="fas fa-box-open text-white text-lg"></i>
+                                 <i class="fas fa-truck text-white text-lg"></i>
                              </div>
                          </div>
                          <div class="text-right">
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 Your Belongings Matter
+                                 Nationwide Coverage
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 Professional care using premium materials and proven techniques to protect everything you value.
+                                 Serving every region of Tanzania from Dar es Salaam to Arusha, Mwanza to Mbeya with reliable delivery networks.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <span>Learn more</span>
@@ -667,15 +667,15 @@
                      <div class="relative flex items-start gap-4 flex-row-reverse p-4 rounded-xl hover:bg-white/5 transition-all duration-300">
                          <div class="flex-shrink-0">
                              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-red-500/20">
-                                 <i class="fas fa-globe-africa text-white text-lg"></i>
+                                 <i class="fas fa-shipping-fast text-white text-lg"></i>
                              </div>
                          </div>
                          <div class="text-right">
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 Truly Global Reach
+                                 Express Delivery
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 Connect with over 200 countries worldwide through our comprehensive network and customs expertise.
+                                 Same-day delivery in major cities and expedited services across Tanzania with real-time tracking.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <span>Learn more</span>
@@ -700,7 +700,7 @@
                      {{-- Image Container --}}
                      <div class="relative overflow-hidden rounded-2xl shadow-2xl group">
                          <img src="{{ asset('assets/images/why-choose/funny-3d-illustration-american-referee.jpg') }}"
-                              alt="Simba Courier Services"
+                              alt="Simba Courier Services Across Tanzania"
                               class="w-full h-[520px] object-cover transform group-hover:scale-105 transition-transform duration-700">
                          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
 
@@ -712,12 +712,12 @@
                          <div class="absolute bottom-6 left-6 right-6">
                              <div class="grid grid-cols-2 gap-3">
                                  <div class="group/stat bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 text-center hover:bg-white/20 hover:border-red-500/50 transition-all duration-300">
-                                     <div class="text-3xl font-bold text-white mb-1 group-hover/stat:text-red-400 transition-colors">19+</div>
-                                     <div class="text-xs text-gray-300">Years Experience</div>
+                                     <div class="text-3xl font-bold text-white mb-1 group-hover/stat:text-red-400 transition-colors">15+</div>
+                                     <div class="text-xs text-gray-300">Years in Tanzania</div>
                                  </div>
                                  <div class="group/stat bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 text-center hover:bg-white/20 hover:border-red-500/50 transition-all duration-300">
-                                     <div class="text-3xl font-bold text-white mb-1 group-hover/stat:text-red-400 transition-colors">5000+</div>
-                                     <div class="text-xs text-gray-300">Happy Clients</div>
+                                     <div class="text-3xl font-bold text-white mb-1 group-hover/stat:text-red-400 transition-colors">26+</div>
+                                     <div class="text-xs text-gray-300">Regions Covered</div>
                                  </div>
                              </div>
                          </div>
@@ -726,7 +726,7 @@
                          <div class="absolute top-6 left-6">
                              <div class="flex items-center gap-2 bg-red-500 px-4 py-2 rounded-full shadow-lg">
                                  <i class="fas fa-shield-alt text-white text-sm"></i>
-                                 <span class="text-white text-xs font-bold">Trusted Partner</span>
+                                 <span class="text-white text-xs font-bold">Tanzania's Trusted Courier</span>
                              </div>
                          </div>
                      </div>
@@ -745,15 +745,15 @@
                      <div class="relative flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-all duration-300">
                          <div class="flex-shrink-0">
                              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-red-500/20">
-                                 <i class="fas fa-warehouse text-white text-lg"></i>
+                                 <i class="fas fa-globe-africa text-white text-lg"></i>
                              </div>
                          </div>
                          <div>
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 Protected Every Step
+                                 East Africa Network
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 State-of-the-art facilities with climate control and 24/7 security monitoring for your peace of mind.
+                                 Strong partnerships across Kenya, Uganda, Rwanda, and Burundi for seamless cross-border deliveries.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <i class="fas fa-arrow-right text-xs"></i>
@@ -769,15 +769,15 @@
                      <div class="relative flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-all duration-300">
                          <div class="flex-shrink-0">
                              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-red-500/20">
-                                 <i class="fas fa-route text-white text-lg"></i>
+                                 <i class="fas fa-warehouse text-white text-lg"></i>
                              </div>
                          </div>
                          <div>
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 Stress-Free Experience
+                                 Strategic Hubs
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 Our dedicated project managers handle every detail so you can focus on what matters most.
+                                 Multiple distribution centers in Dar es Salaam, Arusha, and Mwanza ensuring faster regional deliveries.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <i class="fas fa-arrow-right text-xs"></i>
@@ -793,15 +793,15 @@
                      <div class="relative flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-all duration-300">
                          <div class="flex-shrink-0">
                              <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-red-500/20">
-                                 <i class="fas fa-headset text-white text-lg"></i>
+                                 <i class="fas fa-map-marked-alt text-white text-lg"></i>
                              </div>
                          </div>
                          <div>
                              <h3 class="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors duration-300">
-                                 Always Here for You
+                                 Last-Mile Expertise
                              </h3>
                              <p class="text-gray-400 text-sm leading-relaxed">
-                                 Round-the-clock support and emergency assistance—we're always ready to help whenever you need us.
+                                 Specialized knowledge of Tanzania's urban and rural areas for reliable final delivery solutions.
                              </p>
                              <div class="mt-3 inline-flex items-center gap-2 text-red-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                  <i class="fas fa-arrow-right text-xs"></i>
@@ -1355,7 +1355,7 @@
              <!-- Left: Image -->
              <div class="relative h-full">
                  <img
-                     src="{{ asset('assets/images/customer-care.jpg') }}"
+                     src="{{ asset('assets/images/customer-care.jpg')}}"
                      alt="Customer Support"
                      class="w-full h-[700px] object-cover rounded-2xl shadow-2xl"
                  >
