@@ -53,12 +53,10 @@
                                  </div>
                              </div>
                          </div>
-
                          <div class="space-y-6">
                              <p class="text-gray-600 leading-relaxed text-base lg:text-lg">
                                  Professional inventory management with climate-controlled facilities, real-time tracking systems, and flexible storage solutions.
                              </p>
-
                              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                  <div class="flex items-start space-x-3 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-red-200 hover:shadow-md transition-all duration-300">
                                      <div class="flex-shrink-0 w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center">
@@ -1044,40 +1042,41 @@
                     </div>
 
                     <!-- Alternative Tracking Methods -->
-                    <div class="mt-8">
-                        <p class="text-white text-center mb-5 font-medium text-lg">
-                            Need assistance?
-                        </p>
-                        <div class="flex flex-wrap justify-center gap-4">
-                            <a href="tel:+255123456789" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">
-                                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-phone-alt text-white"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="text-xs text-white text-opacity-70">Call Us</p>
-                                    <p class="font-semibold">+255 123 456</p>
-                                </div>
-                            </a>
-                            <a href="mailto:support@simbacourier.com" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">
-                                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fas fa-envelope text-white"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="text-xs text-white text-opacity-70">Email Us</p>
-                                    <p class="font-semibold">Support</p>
-                                </div>
-                            </a>
-                            <a href="#" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">
-                                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fab fa-whatsapp text-white"></i>
-                                </div>
-                                <div class="text-left">
-                                    <p class="text-xs text-white text-opacity-70">WhatsApp</p>
-                                    <p class="font-semibold">Chat Now</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+{{--                    <div class="mt-8">--}}
+{{--                        <p class="text-white text-center mb-5 font-medium text-lg">--}}
+{{--                            Need assistance?--}}
+{{--                        </p>--}}
+{{--                        <div class="flex flex-wrap justify-center gap-4">--}}
+{{--                            <a href="tel:+255123456789" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">--}}
+{{--                                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">--}}
+{{--                                    <i class="fas fa-phone-alt text-white"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-left">--}}
+{{--                                    <p class="text-xs text-white text-opacity-70">Call Us</p>--}}
+{{--                                    <p class="font-semibold">+255748 507 202</p>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a href="mailto:support@simbacourier.com" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">--}}
+{{--                                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">--}}
+{{--                                    <i class="fas fa-envelope text-white"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-left">--}}
+{{--                                    <p class="text-xs text-white text-opacity-70">Email Us</p>--}}
+{{--                                    <p class="font-semibold">Support</p>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                            <a href="#" class="group inline-flex items-center bg-white bg-opacity-10 backdrop-blur-sm px-6 py-3 rounded-xl text-white hover:bg-opacity-20 transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50 hover:scale-105 transform shadow-lg">--}}
+{{--                                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">--}}
+{{--                                    <i class="fab fa-whatsapp text-white"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="text-left">--}}
+{{--                                    <p class="text-xs text-white text-opacity-70">WhatsApp</p>--}}
+{{--                                    <p class="font-semibold">Chat Now</p>--}}
+{{--                                    <p class="font-semibold">+255748 507 202</p>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
 
