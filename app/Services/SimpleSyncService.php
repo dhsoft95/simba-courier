@@ -12,6 +12,7 @@ class SimpleSyncService
     {
         try {
             $this->syncCustomers();
+            $this->syncUsers();
             $this->syncPickups();
             $this->syncShipments();
 
@@ -47,6 +48,31 @@ class SimpleSyncService
             });
 
         Log::info("Synced {$syncCount} customers");
+    }
+
+    private function syncUsers()
+    {
+        $syncCount = 0;
+
+        DB::connection('external')
+            ->table('tb_users')
+            ->orderBy('id')
+            ->chunk(100, function ($records) use (&$syncCount) {
+                foreach ($records as $record) {
+                    $recordArray = (array) $record;
+
+                    DB::table('tb_users')->updateOrInsert(
+                        ['id' => $record->id],
+                        array_merge($recordArray, [
+                            'updated_at' => now(),
+                            'created_at' => $record->created_at ?? now()
+                        ])
+                    );
+                    $syncCount++;
+                }
+            });
+
+        Log::info("Synced {$syncCount} users");
     }
 
     private function syncPickups()
