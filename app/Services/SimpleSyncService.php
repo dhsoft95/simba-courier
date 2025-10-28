@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\Log;
 
 class SimpleSyncService
 {
-    // Define allowed columns for each table based on your structure
+    // Define allowed columns for each table
     private $allowedColumns = [
         'customers' => [
             'id', 'name', 'incharge', 'address', 'order_no', 'phone',
             'email', 'country', 'image', 'entry_by', 'created_at', 'updated_at'
+        ],
+        'branches' => [
+            'id', 'name', 'address', 'phone', 'email', 'region_id',
+            'entry_by', 'created_at', 'updated_at', 'managed_by'
         ],
         'tb_users' => [
             'id', 'group_id', 'username', 'password', 'email', 'first_name',
@@ -43,6 +47,7 @@ class SimpleSyncService
     public function syncAllData()
     {
         try {
+            $this->syncBranches();  // Add this first
             $this->syncCustomers();
             $this->syncUsers();
             $this->syncPickups();
@@ -55,6 +60,32 @@ class SimpleSyncService
             Log::error('Sync failed: ' . $e->getMessage());
             return false;
         }
+    }
+
+    private function syncBranches()
+    {
+        $syncCount = 0;
+
+        DB::connection('external')
+            ->table('branches')
+            ->orderBy('id')
+            ->chunk(100, function ($records) use (&$syncCount) {
+                foreach ($records as $record) {
+                    $recordArray = $this->filterAllowedColumns((array) $record, 'branches');
+
+                    // Fix timestamp fields
+                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
+                    $recordArray['updated_at'] = now();
+
+                    DB::table('branches')->updateOrInsert(
+                        ['id' => $record->id],
+                        $recordArray
+                    );
+                    $syncCount++;
+                }
+            });
+
+        Log::info("Synced {$syncCount} branches");
     }
 
     private function syncCustomers()
