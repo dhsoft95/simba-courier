@@ -63,6 +63,25 @@ return [
             ]) : [],
         ],
 
+        'external' => [
+            'driver' => 'mysql',
+            'host' => env('EXTERNAL_DB_HOST'),
+            'port' => env('EXTERNAL_DB_PORT', '3306'),
+            'database' => env('EXTERNAL_DB_DATABASE'),
+            'username' => env('EXTERNAL_DB_USERNAME'),
+            'password' => env('EXTERNAL_DB_PASSWORD', ''),
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
