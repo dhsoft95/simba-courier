@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Log;
 
 class SimpleSyncService
 {
+    private $chunkSize = 50; // Smaller chunks
+    private $maxRetries = 3;
+    private $retryDelay = 2; // seconds
+
     // Define allowed columns for each table
     private $allowedColumns = [
         'customers' => [
@@ -47,11 +51,13 @@ class SimpleSyncService
     public function syncAllData()
     {
         try {
-            $this->syncBranches();  // Add this first
-            $this->syncCustomers();
-            $this->syncUsers();
-            $this->syncPickups();
-            $this->syncShipments();
+            Log::info('Starting data sync...');
+
+            $this->syncTable('branches');
+            $this->syncTable('customers');
+            $this->syncTable('tb_users');
+            $this->syncTable('pickups');
+            $this->syncTable('shipments');
 
             Log::info('Data sync completed at ' . now());
             return true;
@@ -62,139 +68,109 @@ class SimpleSyncService
         }
     }
 
-    private function syncBranches()
+    private function syncTable($tableName)
     {
         $syncCount = 0;
+        $totalProcessed = 0;
+        $errors = 0;
 
-        DB::connection('external')
-            ->table('branches')
-            ->orderBy('id')
-            ->chunk(100, function ($records) use (&$syncCount) {
-                foreach ($records as $record) {
-                    $recordArray = $this->filterAllowedColumns((array) $record, 'branches');
+        Log::info("Starting sync for {$tableName}...");
 
-                    // Fix timestamp fields
-                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
-                    $recordArray['updated_at'] = now();
-
-                    DB::table('branches')->updateOrInsert(
-                        ['id' => $record->id],
-                        $recordArray
-                    );
-                    $syncCount++;
-                }
+        try {
+            // Get total count first
+            $totalRecords = $this->executeWithRetry(function() use ($tableName) {
+                return DB::connection('external')->table($tableName)->count();
             });
 
-        Log::info("Synced {$syncCount} branches");
+            Log::info("Total {$tableName} records to sync: {$totalRecords}");
+
+            // Process in smaller chunks with retry logic
+            $this->executeWithRetry(function() use ($tableName, &$syncCount, &$totalProcessed, &$errors, $totalRecords) {
+                DB::connection('external')
+                    ->table($tableName)
+                    ->orderBy('id')
+                    ->chunk($this->chunkSize, function ($records) use ($tableName, &$syncCount, &$totalProcessed, &$errors, $totalRecords) {
+                        foreach ($records as $record) {
+                            try {
+                                $recordArray = $this->filterAllowedColumns((array) $record, $tableName);
+
+                                // Fix timestamp fields
+                                $recordArray = $this->fixTimestampFields($recordArray, $record);
+
+                                // Use local connection for insert
+                                DB::table($tableName)->updateOrInsert(
+                                    ['id' => $record->id],
+                                    $recordArray
+                                );
+
+                                $syncCount++;
+                                $totalProcessed++;
+
+                                // Log progress every 100 records
+                                if ($totalProcessed % 100 === 0) {
+                                    $percentage = round(($totalProcessed / $totalRecords) * 100, 1);
+                                    Log::info("Progress {$tableName}: {$totalProcessed}/{$totalRecords} ({$percentage}%)");
+                                }
+
+                            } catch (\Exception $e) {
+                                $errors++;
+                                Log::warning("Failed to sync {$tableName} record ID {$record->id}: " . $e->getMessage());
+
+                                // Stop if too many errors
+                                if ($errors > 10) {
+                                    throw new \Exception("Too many errors in {$tableName} sync");
+                                }
+                            }
+                        }
+
+                        // Small delay between chunks to prevent overwhelming the connection
+                        usleep(100000); // 0.1 second
+                    });
+            });
+
+            Log::info("Synced {$syncCount} {$tableName} records (errors: {$errors})");
+
+        } catch (\Exception $e) {
+            Log::error("Failed to sync {$tableName}: " . $e->getMessage());
+            throw $e;
+        }
     }
 
-    private function syncCustomers()
+    private function executeWithRetry($callback)
     {
-        $syncCount = 0;
+        $attempt = 0;
 
-        DB::connection('external')
-            ->table('customers')
-            ->orderBy('id')
-            ->chunk(100, function ($records) use (&$syncCount) {
-                foreach ($records as $record) {
-                    $recordArray = $this->filterAllowedColumns((array) $record, 'customers');
+        while ($attempt < $this->maxRetries) {
+            try {
+                return $callback();
+            } catch (\Exception $e) {
+                $attempt++;
 
-                    // Fix timestamp fields
-                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
-                    $recordArray['updated_at'] = now();
-
-                    DB::table('customers')->updateOrInsert(
-                        ['id' => $record->id],
-                        $recordArray
-                    );
-                    $syncCount++;
+                if ($attempt >= $this->maxRetries) {
+                    throw $e;
                 }
-            });
 
-        Log::info("Synced {$syncCount} customers");
+                Log::warning("Attempt {$attempt} failed, retrying in {$this->retryDelay} seconds: " . $e->getMessage());
+                sleep($this->retryDelay);
+
+                // Reconnect to external database
+                DB::connection('external')->reconnect();
+            }
+        }
     }
 
-    private function syncUsers()
+    private function fixTimestampFields($recordArray, $record)
     {
-        $syncCount = 0;
+        // Standard timestamp fixes
+        $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
+        $recordArray['updated_at'] = now();
 
-        DB::connection('external')
-            ->table('tb_users')
-            ->orderBy('id')
-            ->chunk(100, function ($records) use (&$syncCount) {
-                foreach ($records as $record) {
-                    $recordArray = $this->filterAllowedColumns((array) $record, 'tb_users');
+        // Table-specific fixes
+        if (isset($recordArray['last_login'])) {
+            $recordArray['last_login'] = $this->fixTimestamp($recordArray['last_login']);
+        }
 
-                    // Fix timestamp fields
-                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
-                    $recordArray['updated_at'] = now();
-
-                    // Fix last_login if it exists
-                    if (isset($recordArray['last_login'])) {
-                        $recordArray['last_login'] = $this->fixTimestamp($recordArray['last_login']);
-                    }
-
-                    DB::table('tb_users')->updateOrInsert(
-                        ['id' => $record->id],
-                        $recordArray
-                    );
-                    $syncCount++;
-                }
-            });
-
-        Log::info("Synced {$syncCount} users");
-    }
-
-    private function syncPickups()
-    {
-        $syncCount = 0;
-
-        DB::connection('external')
-            ->table('pickups')
-            ->orderBy('id')
-            ->chunk(100, function ($records) use (&$syncCount) {
-                foreach ($records as $record) {
-                    $recordArray = $this->filterAllowedColumns((array) $record, 'pickups');
-
-                    // Fix timestamp fields
-                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
-                    $recordArray['updated_at'] = now();
-
-                    DB::table('pickups')->updateOrInsert(
-                        ['id' => $record->id],
-                        $recordArray
-                    );
-                    $syncCount++;
-                }
-            });
-
-        Log::info("Synced {$syncCount} pickups");
-    }
-
-    private function syncShipments()
-    {
-        $syncCount = 0;
-
-        DB::connection('external')
-            ->table('shipments')
-            ->orderBy('id')
-            ->chunk(100, function ($records) use (&$syncCount) {
-                foreach ($records as $record) {
-                    $recordArray = $this->filterAllowedColumns((array) $record, 'shipments');
-
-                    // Fix timestamp fields
-                    $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
-                    $recordArray['updated_at'] = now();
-
-                    DB::table('shipments')->updateOrInsert(
-                        ['id' => $record->id],
-                        $recordArray
-                    );
-                    $syncCount++;
-                }
-            });
-
-        Log::info("Synced {$syncCount} shipments");
+        return $recordArray;
     }
 
     private function filterAllowedColumns($recordArray, $tableName)
