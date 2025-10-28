@@ -42,4 +42,31 @@ class User extends Authenticatable
     {
         return $this->user_type === 'customer' && !empty($this->customer_id);
     }
+
+    public function getCustomerIdsAttribute()
+    {
+        if (empty($this->customer_id)) {
+            return [];
+        }
+
+        return array_map('trim', explode(',', $this->customer_id));
+    }
+
+    // Mutator to set customer IDs from array
+    public function setCustomerIdsAttribute(array $customerIds)
+    {
+        $this->attributes['customer_id'] = implode(',', array_filter($customerIds));
+    }
+
+    // Relationship to get actual Customer models (optional)
+    public function linkedCustomers()
+    {
+        return Customer::whereIn('id', $this->customer_ids)->get();
+    }
+
+    // Helper method to check if user has a specific customer
+    public function hasCustomer($customerId)
+    {
+        return in_array($customerId, $this->customer_ids);
+    }
 }
