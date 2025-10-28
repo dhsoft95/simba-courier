@@ -82,7 +82,7 @@ class ShipmentResource extends Resource
                     ->placeholder('Pending')
                     ->size('sm'),
             ])
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('shipment_date', 'asc')
             ->striped()
             ->actions([
                 Tables\Actions\ViewAction::make()
