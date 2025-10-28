@@ -1,5 +1,4 @@
 <?php
-// app/Jobs/SyncDataJob.php
 
 namespace App\Jobs;
 
@@ -14,9 +13,8 @@ class SyncDataJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $timeout = 1800; // 30 minutes timeout
-    public $tries = 1; // Don't retry failed syncs
-    public $maxExceptions = 3;
+    public $timeout = 600;
+    public $tries = 3;
 
     public function handle(SimpleSyncService $syncService)
     {

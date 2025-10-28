@@ -8,20 +8,26 @@ use Illuminate\Console\Command;
 
 class SyncDataCommand extends Command
 {
-    protected $signature = 'sync:data';
-    protected $description = 'Manually sync data from external database';
+    protected $signature = 'sync:data
+                           {--full : Run full sync instead of incremental}
+                           {--recent=2 : Sync records from last X hours}';
+    protected $description = 'Sync data from external database';
 
     public function handle(SimpleSyncService $syncService)
     {
-        $this->info(' Starting data sync...');
-
-        $startTime = now();
-
-        if ($syncService->syncAllData()) {
-            $duration = $startTime->diffInSeconds(now());
-            $this->info("✅ Data sync completed successfully in {$duration} seconds!");
+        if ($this->option('full')) {
+            $this->info(' Starting FULL optimized sync...');
+            $result = $syncService->syncAllData();
         } else {
-            $this->error('❌ Data sync failed. Check logs for details.');
+            $hours = $this->option('recent');
+            $this->info(" Starting incremental sync (last {$hours} hours)...");
+            $result = $syncService->syncRecentChanges($hours);
+        }
+
+        if ($result) {
+            $this->info(' Data sync completed successfully!');
+        } else {
+            $this->error(' Data sync failed. Check logs for details.');
         }
     }
 }

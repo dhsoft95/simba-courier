@@ -5,12 +5,13 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class SimpleSyncService
 {
-    private $chunkSize = 50; // Smaller chunks
+    private $chunkSize = 200; // Larger chunks for better performance
     private $maxRetries = 3;
-    private $retryDelay = 2; // seconds
+    private $retryDelay = 2;
 
     // Define allowed columns for each table
     private $allowedColumns = [
@@ -51,15 +52,18 @@ class SimpleSyncService
     public function syncAllData()
     {
         try {
-            Log::info('Starting data sync...');
+            Log::info('Starting optimized data sync...');
+            $startTime = now();
 
-            $this->syncTable('branches');
-            $this->syncTable('customers');
-            $this->syncTable('tb_users');
-            $this->syncTable('pickups');
-            $this->syncTable('shipments');
+            // Sync in priority order (fastest first)
+            $this->syncTableSmart('branches');
+            $this->syncTableSmart('customers');
+            $this->syncTableSmart('tb_users');
+            $this->syncTableSmart('pickups');
+            $this->syncTableSmart('shipments');
 
-            Log::info('Data sync completed at ' . now());
+            $duration = $startTime->diffInSeconds(now());
+            Log::info("Data sync completed in {$duration} seconds");
             return true;
 
         } catch (\Exception $e) {
@@ -68,71 +72,169 @@ class SimpleSyncService
         }
     }
 
-    private function syncTable($tableName)
+    private function syncTableSmart($tableName)
     {
         $syncCount = 0;
-        $totalProcessed = 0;
-        $errors = 0;
+        $startTime = now();
 
-        Log::info("Starting sync for {$tableName}...");
+        Log::info("Starting optimized sync for {$tableName}...");
 
         try {
-            // Get total count first
-            $totalRecords = $this->executeWithRetry(function() use ($tableName) {
-                return DB::connection('external')->table($tableName)->count();
-            });
+            // Use batch processing with upserts for better performance
+            $this->executeWithRetry(function() use ($tableName, &$syncCount) {
+                $batch = [];
+                $batchSize = 100; // Process 100 records at once
 
-            Log::info("Total {$tableName} records to sync: {$totalRecords}");
-
-            // Process in smaller chunks with retry logic
-            $this->executeWithRetry(function() use ($tableName, &$syncCount, &$totalProcessed, &$errors, $totalRecords) {
                 DB::connection('external')
                     ->table($tableName)
                     ->orderBy('id')
-                    ->chunk($this->chunkSize, function ($records) use ($tableName, &$syncCount, &$totalProcessed, &$errors, $totalRecords) {
+                    ->chunk($this->chunkSize, function ($records) use ($tableName, &$syncCount, &$batch, $batchSize) {
                         foreach ($records as $record) {
-                            try {
-                                $recordArray = $this->filterAllowedColumns((array) $record, $tableName);
+                            $recordArray = $this->filterAllowedColumns((array) $record, $tableName);
+                            $recordArray = $this->fixTimestampFields($recordArray, $record);
 
-                                // Fix timestamp fields
-                                $recordArray = $this->fixTimestampFields($recordArray, $record);
+                            $batch[] = $recordArray;
 
-                                // Use local connection for insert
-                                DB::table($tableName)->updateOrInsert(
-                                    ['id' => $record->id],
-                                    $recordArray
-                                );
-
-                                $syncCount++;
-                                $totalProcessed++;
-
-                                // Log progress every 100 records
-                                if ($totalProcessed % 100 === 0) {
-                                    $percentage = round(($totalProcessed / $totalRecords) * 100, 1);
-                                    Log::info("Progress {$tableName}: {$totalProcessed}/{$totalRecords} ({$percentage}%)");
-                                }
-
-                            } catch (\Exception $e) {
-                                $errors++;
-                                Log::warning("Failed to sync {$tableName} record ID {$record->id}: " . $e->getMessage());
-
-                                // Stop if too many errors
-                                if ($errors > 10) {
-                                    throw new \Exception("Too many errors in {$tableName} sync");
-                                }
+                            // Process batch when it reaches the batch size
+                            if (count($batch) >= $batchSize) {
+                                $this->processBatch($tableName, $batch);
+                                $syncCount += count($batch);
+                                $batch = []; // Reset batch
                             }
                         }
-
-                        // Small delay between chunks to prevent overwhelming the connection
-                        usleep(100000); // 0.1 second
                     });
+
+                // Process any remaining records in the batch
+                if (!empty($batch)) {
+                    $this->processBatch($tableName, $batch);
+                    $syncCount += count($batch);
+                }
             });
 
-            Log::info("Synced {$syncCount} {$tableName} records (errors: {$errors})");
+            $duration = $startTime->diffInSeconds(now());
+            Log::info("Synced {$syncCount} {$tableName} records in {$duration} seconds");
 
         } catch (\Exception $e) {
             Log::error("Failed to sync {$tableName}: " . $e->getMessage());
             throw $e;
+        }
+    }
+
+    private function processBatch($tableName, $batch)
+    {
+        if (empty($batch)) return;
+
+        try {
+            // Use Laravel's upsert for better performance (Laravel 8+)
+            if (method_exists(DB::table($tableName), 'upsert')) {
+                DB::table($tableName)->upsert(
+                    $batch,
+                    ['id'], // Unique identifier
+                    array_keys($this->allowedColumns[$tableName]) // Columns to update
+                );
+            } else {
+                // Fallback to individual updateOrInsert
+                foreach ($batch as $record) {
+                    DB::table($tableName)->updateOrInsert(
+                        ['id' => $record['id']],
+                        $record
+                    );
+                }
+            }
+        } catch (\Exception $e) {
+            Log::warning("Batch processing failed for {$tableName}, falling back to individual records: " . $e->getMessage());
+
+            // Fallback: process records individually
+            foreach ($batch as $record) {
+                try {
+                    DB::table($tableName)->updateOrInsert(
+                        ['id' => $record['id']],
+                        $record
+                    );
+                } catch (\Exception $individualError) {
+                    Log::warning("Failed to sync {$tableName} record ID {$record['id']}: " . $individualError->getMessage());
+                }
+            }
+        }
+    }
+
+    // Incremental sync method (only sync recent changes)
+    public function syncRecentChanges($hoursBack = 2)
+    {
+        try {
+            Log::info("Starting incremental sync for last {$hoursBack} hours...");
+            $startTime = now();
+            $cutoffTime = now()->subHours($hoursBack);
+
+            $this->syncTableRecent('branches', $cutoffTime);
+            $this->syncTableRecent('customers', $cutoffTime);
+            $this->syncTableRecent('tb_users', $cutoffTime);
+            $this->syncTableRecent('pickups', $cutoffTime);
+            $this->syncTableRecent('shipments', $cutoffTime);
+
+            $duration = $startTime->diffInSeconds(now());
+            Log::info("Incremental sync completed in {$duration} seconds");
+            return true;
+
+        } catch (\Exception $e) {
+            Log::error('Incremental sync failed: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    private function syncTableRecent($tableName, $cutoffTime)
+    {
+        $syncCount = 0;
+
+        try {
+            // Only sync records updated recently
+            $recentRecords = DB::connection('external')
+                ->table($tableName)
+                ->where('updated_at', '>', $cutoffTime)
+                ->orWhere('created_at', '>', $cutoffTime)
+                ->count();
+
+            if ($recentRecords === 0) {
+                Log::info("No recent changes in {$tableName}");
+                return;
+            }
+
+            Log::info("Found {$recentRecords} recent changes in {$tableName}");
+
+            $batch = [];
+            $batchSize = 50;
+
+            DB::connection('external')
+                ->table($tableName)
+                ->where(function($query) use ($cutoffTime) {
+                    $query->where('updated_at', '>', $cutoffTime)
+                        ->orWhere('created_at', '>', $cutoffTime);
+                })
+                ->orderBy('id')
+                ->chunk(100, function ($records) use ($tableName, &$syncCount, &$batch, $batchSize) {
+                    foreach ($records as $record) {
+                        $recordArray = $this->filterAllowedColumns((array) $record, $tableName);
+                        $recordArray = $this->fixTimestampFields($recordArray, $record);
+
+                        $batch[] = $recordArray;
+
+                        if (count($batch) >= $batchSize) {
+                            $this->processBatch($tableName, $batch);
+                            $syncCount += count($batch);
+                            $batch = [];
+                        }
+                    }
+                });
+
+            if (!empty($batch)) {
+                $this->processBatch($tableName, $batch);
+                $syncCount += count($batch);
+            }
+
+            Log::info("Synced {$syncCount} recent {$tableName} records");
+
+        } catch (\Exception $e) {
+            Log::error("Failed to sync recent {$tableName}: " . $e->getMessage());
         }
     }
 
@@ -152,8 +254,6 @@ class SimpleSyncService
 
                 Log::warning("Attempt {$attempt} failed, retrying in {$this->retryDelay} seconds: " . $e->getMessage());
                 sleep($this->retryDelay);
-
-                // Reconnect to external database
                 DB::connection('external')->reconnect();
             }
         }
@@ -161,11 +261,9 @@ class SimpleSyncService
 
     private function fixTimestampFields($recordArray, $record)
     {
-        // Standard timestamp fixes
         $recordArray['created_at'] = $this->fixTimestamp($record->created_at ?? null);
         $recordArray['updated_at'] = now();
 
-        // Table-specific fixes
         if (isset($recordArray['last_login'])) {
             $recordArray['last_login'] = $this->fixTimestamp($recordArray['last_login']);
         }
@@ -173,7 +271,7 @@ class SimpleSyncService
         return $recordArray;
     }
 
-    private function filterAllowedColumns($recordArray, $tableName)
+    private function filterAllowedColumns($recordArray, $tableName): array
     {
         $allowedColumns = $this->allowedColumns[$tableName] ?? [];
 
