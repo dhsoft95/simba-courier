@@ -162,7 +162,10 @@ class PickupRequestResource extends Resource
 
                 // Hidden fields
                 Forms\Components\Hidden::make('initiator_id')
-                    ->default(Auth::user()->customer_id),
+                    ->default(function () {
+                        $customerIds = Auth::user()->customer_ids;
+                        return !empty($customerIds) ? $customerIds[0] : null;
+                    }),
 
                 Forms\Components\Hidden::make('entry_by')
                     ->default(Auth::user()->id),
@@ -326,17 +329,20 @@ class PickupRequestResource extends Resource
     {
         $query = parent::getEloquentQuery();
 
-        if (Auth::check() && Auth::user()->customer_id) {
-            return $query->where('initiator_id', Auth::user()->customer_id);
+        if (Auth::check() && !empty(Auth::user()->customer_ids)) {
+            $customerIds = Auth::user()->customer_ids; // Uses your accessor
+            return $query->whereIn('initiator_id', $customerIds);
         }
 
         return $query->whereRaw('1 = 0');
     }
 
+
     public static function getNavigationBadge(): ?string
     {
-        if (Auth::check() && Auth::user()->customer_id) {
-            $count = static::getModel()::where('initiator_id', Auth::user()->customer_id)
+        if (Auth::check() && !empty(Auth::user()->customer_ids)) {
+            $customerIds = Auth::user()->customer_ids;
+            $count = static::getModel()::whereIn('initiator_id', $customerIds)
                 ->where('status_id', 'Requested')
                 ->count();
             return $count > 0 ? (string) $count : null;

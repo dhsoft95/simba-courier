@@ -18,10 +18,13 @@ class RecentShipmentsTable extends BaseWidget
 
     public function table(Table $table): Table
     {
+        $user = Auth::user();
+        $customerIds = $user && !empty($user->customer_ids) ? $user->customer_ids : [0];
+
         return $table
             ->query(
                 Shipment::query()
-                    ->where('customer_id', Auth::user()->customer_id ?? 0)
+                    ->whereIn('customer_id', $customerIds)
                     ->latest()
                     ->limit(5)
             )

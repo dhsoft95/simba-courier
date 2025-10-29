@@ -13,18 +13,18 @@ class ShipmentStatsOverview extends BaseWidget
     {
         $user = Auth::user();
 
-        if (!$user || !$user->customer_id) {
+        if (!$user || empty($user->customer_ids)) {
             return [];
         }
 
-        $customerId = $user->customer_id;
+        $customerIds = $user->customer_ids;
 
-        // Create independent queries for each count
-        $total = Shipment::where('customer_id', $customerId)->count();
-        $delivered = Shipment::where('customer_id', $customerId)->where('status_id', 'Delivered')->count();
-        $inTransit = Shipment::where('customer_id', $customerId)->whereIn('status_id', ['In Transit', 'Out For Delivery'])->count();
-        $pending = Shipment::where('customer_id', $customerId)->where('status_id', 'In Warehouse')->count();
-        $recentCount = Shipment::where('customer_id', $customerId)->where('created_at', '>=', now()->subDays(30))->count();
+        // Create independent queries for each count using whereIn
+        $total = Shipment::whereIn('customer_id', $customerIds)->count();
+        $delivered = Shipment::whereIn('customer_id', $customerIds)->where('status_id', 'Delivered')->count();
+        $inTransit = Shipment::whereIn('customer_id', $customerIds)->whereIn('status_id', ['In Transit', 'Out For Delivery'])->count();
+        $pending = Shipment::whereIn('customer_id', $customerIds)->where('status_id', 'In Warehouse')->count();
+        $recentCount = Shipment::whereIn('customer_id', $customerIds)->where('created_at', '>=', now()->subDays(30))->count();
 
         // Calculate delivery rate
         $deliveryRate = $total > 0 ? round(($delivered / $total) * 100, 1) : 0;
