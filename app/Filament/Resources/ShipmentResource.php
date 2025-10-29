@@ -326,8 +326,9 @@ class ShipmentResource extends Resource
     {
         $query = parent::getEloquentQuery();
 
-        if (Auth::check() && Auth::user()->customer_id) {
-            return $query->where('customer_id', Auth::user()->customer_id);
+        if (Auth::check() && !empty(Auth::user()->customer_ids)) {
+            $customerIds = Auth::user()->customer_ids;
+            return $query->whereIn('customer_id', $customerIds);
         }
 
         return $query->whereRaw('1 = 0');
@@ -335,8 +336,9 @@ class ShipmentResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        if (Auth::check() && Auth::user()->customer_id) {
-            $count = static::getModel()::where('customer_id', Auth::user()->customer_id)
+        if (Auth::check() && !empty(Auth::user()->customer_ids)) {
+            $customerIds = Auth::user()->customer_ids;
+            $count = static::getModel()::whereIn('customer_id', $customerIds)
                 ->where('status_id', 'Delivered')
                 ->count();
             return $count > 0 ? (string) $count : null;
