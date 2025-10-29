@@ -10,6 +10,11 @@ class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
     protected function mutateFormDataBeforeFill(array $data): array
     {
         // Convert comma-separated customer_id to array for the form
@@ -32,4 +37,5 @@ class EditUser extends EditRecord
 
         return $data;
     }
+
 }

@@ -21,6 +21,7 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'User Management';
     protected static ?string $modelLabel = 'User Assignment';
     protected static ?string $pluralModelLabel = 'User Assignments';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -44,23 +45,24 @@ class UserResource extends Resource
 
                 Forms\Components\Section::make('Customer Access')
                     ->schema([
-                        Forms\Components\Select::make('customer_ids') // Using the accessor
-                        ->label('Customers')
+                        Forms\Components\Select::make('customer_ids')
+                            ->label('Customers')
                             ->options(Customer::all()->pluck('name', 'id'))
                             ->multiple()
                             ->searchable()
                             ->preload()
                             ->helperText('Select multiple customers this user can access')
-                            ->dehydrated(false), // Important for custom handling
+                            ->rules(['array', 'min:1']) // Ensure at least one customer
+                            ->maxItems(10) // Reasonable limit
                     ]),
 
                 Forms\Components\Section::make('Security')
                     ->schema([
                         Forms\Components\TextInput::make('password')
                             ->password()
-                            ->dehydrateStateUsing(fn ($state) => Hash::make($state))
-                            ->dehydrated(fn ($state) => filled($state))
-                            ->required(fn ($livewire) => $livewire instanceof Pages\CreateUser)
+                            ->dehydrateStateUsing(fn($state) => Hash::make($state))
+                            ->dehydrated(fn($state) => filled($state))
+                            ->required(fn($livewire) => $livewire instanceof Pages\CreateUser)
                             ->maxLength(255),
                     ]),
             ]);
